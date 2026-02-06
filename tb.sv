@@ -2,13 +2,13 @@ module tb;
   logic clk;
   logic reset;
   logic i_valid;
-  logic [7:0i_data;
+  logic [7:0]i_data;
   logic o_ready;
   logic o_valid;
   logic [7:0]o_data;
   logic i_ready;
 
-  task_optoML u_dut (
+  task_optoML inst1 (
     .clk(clk),
     .reset(reset),
     .i_valid(i_valid),
@@ -32,37 +32,37 @@ module tb;
 
     repeat(2) @(posedge clk);
     reset = 0; 
-    $display("--- Reset Complete ---");
+    $display("Reset Complete");
 
 
     @(posedge clk);
     i_ready <= 1; 
-    drive_packet(8'hAA);
-    drive_packet(8'hBB);
+    drive_packet(8'h6F);
+    drive_packet(8'h70);
     
     @(posedge clk);
     i_valid <= 0;
     @(posedge clk);
 
-    $display("--- Starting Backpressure Test ---");
+    $display("Starting Backpressure Test");
 
     @(posedge clk);
     i_ready <= 0;       
     i_valid <= 1;      
-    i_data  <= 8'hCC;
+    i_data  <= 8'h74;
 
     repeat(2) @(posedge clk); 
 
-    $display("--- Releasing Backpressure ---");
+    $display("Releasing Backpressure");
     @(posedge clk);
     i_ready <= 1; 
 
-    drive_packet(8'hDD);
+    drive_packet(8'h6F);
 
     @(posedge clk);
     i_valid <= 0;
     #20;
-    $display("--- Test Passed ---");
+    $display("Test Passed");
     $finish;
   end
 
