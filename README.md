@@ -11,6 +11,10 @@ and correctly handles backpressure without data loss or duplication. The design 
 
 This module is designed to break timing paths on the `valid` and `data` signals while correctly handling backpressure (flow control) without data loss or duplication.
 
+## Output Waveform
+<img width="1880" height="527" alt="output_waveform" src="https://github.com/user-attachments/assets/bea80eac-46de-48b2-9990-347daf53b5e7" />
+
+
 ## 🚀 Key Features
 
 * **Protocol Compliance:** Standard Valid/Ready handshake logic.
